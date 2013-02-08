@@ -1,44 +1,77 @@
-int sensorValue;
-int ram;
-int ram1;
-int incomingByte;
-void setup() {
-        Serial.begin(9600);  
-        Serial.print("hare krishna");  // opens serial port, sets data rate to 9600 bps
+
+#include <LiquidCrystal.h>
+
+// initialize the library with the numbers of the interface pins
+
+LiquidCrystal lcd(2,4,8,9,10,11);
+int rama;
+int ups;
+int rama1;
+String a;
+
+void setup(){
+
+    // set up the LCD's number of columns and rows: 
+  lcd.begin(16, 2);
+  // initialize the serial communications:
+  Serial.begin(9600);
+  lcd.setCursor(2,0 );
+  lcd.print("EIE  PROJECT");
+  delay(3000);
+  lcd.clear(); 
+  lcd.print("FACTORY SETTINGS");
+  
+  lcd.setCursor(0,1 );
+ 
+  lcd.print("enter");
+ 
+  lcd.setCursor(10,1);
+ 
+  lcd.print("exit");
 }
 
-void loop() {
-        // send data only when you receive data:
-        if (Serial.available() > 0) {
-                // read the incoming byte:
-                incomingByte = Serial.read();
-                // say what you got:
-                Serial.print("I received: ");
-                Serial.println(incomingByte, DEC);
-        }
-        if(incomingByte == 65)
-        {
-          ram=analogRead(A0);
-          Serial.println(ram, DEC);
-          delay(10);
-          if(ram<800)
+void loop()
+{
+  // when characters arrive over the serial port...
+  if (Serial.available()) {
+    // wait a bit for the entire message to arrive
+    delay(100);
+    // clear the screen
+    lcd.clear();
+    // read all the available characters
+    while (Serial.available() > 0) {
+      // display each character to the LCD
+       a = char(Serial.read());
+      lcd.print(a);
+      if(a == "A")
+      {
+          rama=analogRead(A0);
+          Serial.println(rama, DEC);
+          delay(1000);
+          if(rama<800)
           {
            analogWrite(12,255); 
            analogWrite(10,255);
+           lcd.clear();
+           lcd.print("AMBIENT LIGHT");
+           lcd.setCursor(0, 1);
+           lcd.print(rama);
+           lcd.print("    LIGHTS ON");
           }
           else
           {
            analogWrite(12,0); 
            analogWrite(10,0); 
+           lcd.print("LIGHTS OFF");
           }
-        }
-          else if (incomingByte ==66)
+      }
+       else if (a == "B")
           {
  
-            ram1=analogRead(A1);
-            Serial.println(ram1, DEC);
+            rama1=analogRead(A1);
+            Serial.println(rama1, DEC);
             delay(2000);
-            if(ram1<550)
+            if(rama1<550)
             {
               analogWrite(9,255);
             }
@@ -46,9 +79,63 @@ void loop() {
             {
               analogWrite(9,0);
             }
+            lcd.clear();
+            lcd.print("FACTORY TEMPRATURE");
+            lcd.setCursor(0, 1);
+            lcd.print(rama1);
         }
-            else if (incomingByte ==67)
+            else if (a =="C")
         {
              analogWrite(7,255); 
+              delay(1000);
+             lcd.clear();
+             lcd.print("   MOTOR ON");
         }  
-}
+         else if (a =="D")
+        {
+             analogWrite(7,0); 
+              delay(1000);
+             lcd.clear();
+             lcd.print("   MOTOR OFF");
+        }  
+        else if (a =="E")
+        {
+             analogWrite(2,225); 
+              delay(1000);
+             lcd.clear();
+             lcd.print("   PUMP ON");
+        }  
+        else if (a =="F")
+        {
+             analogWrite(1,0); 
+             delay(1000);
+             lcd.clear();
+             lcd.print("   PUMP OFF");
+        }  
+        else if (a =="G")
+        {
+             lcd.clear();
+             lcd.print(" AUTOMATIC LEVEL");
+             lcd.setCursor(0,1);
+             lcd.print("  PID CONTROL");
+             
+        }  
+        else if (a =="H")
+        {
+             lcd.clear();
+             lcd.print(" POWER SAVE MODE ");
+             
+        }
+      else if (a =="I")
+        {
+             ups=analogRead(A2);
+             lcd.clear();
+             lcd.print(" UPS CHARGE ");
+             lcd.setCursor(0,1);
+             lcd.print(ups);
+        }    
+    }
+     
+    }
+  }
+
