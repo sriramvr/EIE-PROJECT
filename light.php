@@ -1,3 +1,23 @@
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program. If not, see <http://www.gnu.org/licenses/>.
+   
+   
+    Written by Sriram.vr <send2sriram@yahoo.in>
+    Based on EIE-PROJECT Copyright (C) 2013 Sriram.vr
+    Copyright (C) 2009-2013 Sriram.vr EIE SETHU INSTITUTE OF TECHNOLOGY , Inc.
+
+
+
 <html>
 <body background="http://www.sunwarrior.com/news/wp-content/uploads/2012/10/First-aid-kit-Ics9-sxc.jpg">
 <font color=" #B22222"> 
